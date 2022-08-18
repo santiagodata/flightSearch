@@ -1,0 +1,15 @@
+.full-width-table {
+  width: 100%;
+}
+
+.flight-card {
+  max-width: 400px;
+}
+
+section {
+  display: table;
+}
+
+button {
+  margin-right: 8px;
+}
