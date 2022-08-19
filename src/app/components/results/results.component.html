@@ -1,76 +1,70 @@
 <div class="container">
 
+<!--  Seleccionar Moneda-->
   <div class="selectCurrency" col-sm-1>
-  <mat-form-field appearance="fill">
-    <mat-label>Select Currency</mat-label>
-   <mat-select [(value)]="selectCurrency" >
-    <mat-option value="USD">USD</mat-option>
-      <mat-option value="EUR">EUR</mat-option>
-      <mat-option value="COP">COP</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Currency</mat-label>
+      <mat-select [(value)]="selectCurrency">
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="EUR">EUR</mat-option>
+        <mat-option value="COP">COP</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label> Max. number of flights </mat-label>
+      <mat-label> Max. number of flights</mat-label>
       <input matInput value="10">
     </mat-form-field>
-
   </div>
 
 
-
   <div class="row">
-<div class="col-sm-3 " *ngFor="let flight of flights">
-  <div class="card border-light mb-3" id="flight-card" style="max-width: 18rem;">
+    <div class="col-sm-3 " *ngFor="let flight of flights">
+      <div class="card border-light mb-3" id="flight-card" style="max-width: 18rem;">
 
-  <mat-card class="flight-card">
-    <mat-card-title>{{flight.departureStation}} - {{flight.arrivalStation}}</mat-card-title>
-    <mat-card-subtitle>Origin: {{flight.departureStation}}</mat-card-subtitle>
-    <mat-card-subtitle>Destination: {{flight.arrivalStation}}</mat-card-subtitle>
-    <mat-card-content>
-      <p>Flight Carrier: {{flight.flightCarrier}}</p>
-      <p>Flight Number: {{flight.flightNumber}}</p>
-    </mat-card-content>
-    <mat-divider></mat-divider>
-    <mat-card-actions>
-      <section>
+<!--        Tarjetas-->
+        <mat-card class="flight-card">
+          <mat-card-title>{{flight.departureStation}} - {{flight.arrivalStation}}</mat-card-title>
+          <mat-card-subtitle>Origin: {{flight.departureStation}}</mat-card-subtitle>
+          <mat-card-subtitle>Destination: {{flight.arrivalStation}}</mat-card-subtitle>
+          <mat-card-content>
+            <p>Flight Carrier: {{flight.flightCarrier}}</p>
+            <p>Flight Number: {{flight.flightNumber}}</p>
+          </mat-card-content>
+          <mat-divider></mat-divider>
 
-          <button type="button"  class="btn btn-success btn-lg mat-raised-button" *ngIf="selectCurrency === 'EUR'"> {{flight.price * eur| currency:'EUR'}} </button>
-          <button type="button"  class="btn btn-success btn-lg mat-raised-button" *ngIf="selectCurrency ==='COP'"> {{flight.price * cop| currency:'COP':'$':'.0-0'}} </button>
-          <button type="button"  class="btn btn-success btn-lg mat-raised-button" *ngIf="selectCurrency === 'USD'"> {{flight.price | currency:'USD'}} </button>
+<!--          Boton Precio-->
+          <mat-card-actions>
+            <section>
+
+              <button type="button" class="btn btn-success btn-lg mat-raised-button"
+                      *ngIf="selectCurrency === 'EUR'"> {{flight.price * eur| currency:'EUR'}} </button>
+              <button type="button" class="btn btn-success btn-lg mat-raised-button"
+                      *ngIf="selectCurrency ==='COP'"> {{flight.price * cop| currency:'COP':'$':'.0-0'}} </button>
+              <button type="button" class="btn btn-success btn-lg mat-raised-button"
+                      *ngIf="selectCurrency === 'USD'"> {{flight.price | currency:'USD'}} </button>
+
+            </section>
+          </mat-card-actions>
 
 
-      </section>
-    </mat-card-actions>
 
-  </mat-card>
+        </mat-card>
+
+
+
+      </div>
+
+    </div>
+    <mat-paginator #paginator
+
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
 
 </div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--<div class="mat-elevation-z8">-->
@@ -109,12 +103,6 @@
 <!--    <tr mat-row *matRowDef="let flights; columns: displayedColumns;"></tr>-->
 <!--  </table>-->
 
-<!--  <mat-paginator #paginator-->
-<!--      [length]="dataSource.data.length"-->
-<!--      [pageIndex]="0"-->
-<!--      [pageSize]="10"-->
-<!--      [pageSizeOptions]="[5, 10, 20]"-->
-<!--      aria-label="Select page">-->
-<!--  </mat-paginator>-->
+
 <!--</div>-->
 <!--</div>-->

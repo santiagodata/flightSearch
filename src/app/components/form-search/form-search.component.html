@@ -1,22 +1,24 @@
 <div class="container">
-  <form [formGroup]="searchForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="searchForm">
     <mat-card class="shipping-card">
 
-<!--      Titulo-->
+      <!--      Titulo-->
       <mat-card-header>
         <mat-card-title>Flights Search</mat-card-title>
       </mat-card-header>
 
-
+      <!--Control animacion-->
       <mat-card-content>
-        <mat-vertical-stepper [linear]="false" #stepper [animationDuration]="'500'">
+        <mat-vertical-stepper [linear]="false" [animationDuration]="'500'">
 
           <!--        Input Origin-->
           <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup">
               <ng-template matStepLabel>Origin <i class="fa-solid fa-plane-departure"></i></ng-template>
               <mat-form-field>
-                <input matInput
+                <input id="departure"
+                       name="departure"
+                       matInput
                        placeholder="departure"
                        formControlName="firstCtrl"
                        required maxlength="3"
@@ -33,7 +35,9 @@
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Destination <i class="fa-solid fa-plane-arrival"></i></ng-template>
               <mat-form-field>
-                <input matInput
+                <input id="arrival"
+                       name="arrival"
+                       matInput
                        placeholder="arrival"
                        formControlName="secondCtrl"
                        required maxlength="3"
@@ -44,14 +48,14 @@
             </form>
           </mat-step>
 
-<!--          Autocompletador Origin-->
+          <!--          Autocompletador Origin-->
           <mat-autocomplete #autoOrigin="matAutocomplete">
             <mat-option *ngFor="let option of optionsOrigin" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
 
-<!--          Autocompletador Destination-->
+          <!--          Autocompletador Destination-->
           <mat-autocomplete #autoDestination="matAutocomplete">
             <mat-option *ngFor="let option of optionsDestination" [value]="option">
               {{option}}
@@ -59,11 +63,10 @@
           </mat-autocomplete>
 
 
-
         </mat-vertical-stepper>
       </mat-card-content>
 
-
+      <!--boton Search-->
       <mat-card-actions>
         <button
           (click)="showResults()"
@@ -73,14 +76,19 @@
           Search
         </button>
       </mat-card-actions>
+
     </mat-card>
   </form>
 
+  <!--  Mostrar componente results-->
   <div *ngIf="elementResult == true">
     <div class="app-results">
       <app-results></app-results>
     </div>
   </div>
 
+  <div *ngIf="departure == arrival">
+    <div (submit)="repeatValidation()"></div>
+  </div>
 </div>
 

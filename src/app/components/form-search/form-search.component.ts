@@ -7,63 +7,72 @@ import {FlightsService} from "../../services/flights.service";
   templateUrl: './form-search.component.html',
   styleUrls: ['./form-search.component.css']
 })
-export class FormSearchComponent {
 
+// Clase para FormSearch
+export class FormSearchComponent {
   searchForm = this.fb.group({
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
   });
-
   public flights: any = []
   public elementResult: boolean = false;
+  public elementRepeat: boolean = false;
+  public departure: string = "";
+  public arrival: string = "";
 
+
+  // Constructor
   constructor(
     private fb: FormBuilder,
-    public flight:FlightsService
+    public flight: FlightsService,
   ) {
   }
 
   firstFormGroup: FormGroup = this.fb.group({firstCtrl: ['']});
   secondFormGroup: FormGroup = this.fb.group({secondCtrl: ['']});
-
-
   hasUnitNumber = false;
-
   myControl = new FormControl('');
 
-  dataOrigin: string[] = ['BGT', 'CTG', 'MDE', 'MZL', 'PEI']
+  // Datos Origin
+  dataOrigin: string[] = ['BOG', 'CTG', 'MDE', 'MZL', 'PEI']
   dataArrOrigin: Set<string> = new Set(this.dataOrigin);
   optionsOrigin = [...this.dataArrOrigin];
 
+  // Datos Destination
   dataDestination: string[] = ['BCN', 'BOG', 'CAN', 'CTG', 'MAD', 'MEX']
   dataArrDestination: Set<string> = new Set(this.dataDestination);
   optionsDestination = [...this.dataArrDestination];
 
 
-  onSubmit(): void {
-    alert('Thanks!');
+//Validacion
+  repeatValidation(): void {
+    alert('Origin y Destination deben ser valores diferentes');
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.flight.getFlights().subscribe
     (
-      (r)=>{this.flights = r; console.log(r)},
-      (e)=>{console.error(e)}
-
+      (r) => {
+        this.flights = r;
+        console.log(r)
+      },
+      (e) => {
+        console.error(e)
+      }
     )
   }
 
-  getOrigin(searchTerm:string){
-    this.flight.getOrigin(searchTerm).subscribe(data =>{
+  // Buscar origin
+  getOrigin(searchTerm: string) {
+    this.flight.getOrigin(searchTerm).subscribe(data => {
       console.log(data);
-    }    )
+    })
 
   }
 
-  showResults(){
-   return this.elementResult = true
+  // Mostrar componente resultado
+  showResults() {
+    return this.elementResult = true
   }
-
-
 
 }
