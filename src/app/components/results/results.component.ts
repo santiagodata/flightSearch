@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Injectable, ViewChild} from '@angular/core';
+import { Component } from '@angular/core';
 import {FlightsService} from "../../services/flights.service";
 
 @Component({
@@ -27,6 +27,9 @@ export class ResultsComponent {
       }
     )
   }
+
+
+
 }
 
 

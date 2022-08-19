@@ -15,6 +15,7 @@ export class FormSearchComponent {
   });
 
   public flights: any = []
+  public elementResult: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,12 +31,14 @@ export class FormSearchComponent {
 
   myControl = new FormControl('');
 
-  data: string[] = ['valor1', 'valor2']
+  dataOrigin: string[] = ['BGT', 'CTG', 'MDE', 'MZL', 'PEI']
+  dataArrOrigin: Set<string> = new Set(this.dataOrigin);
+  optionsOrigin = [...this.dataArrOrigin];
 
+  dataDestination: string[] = ['BCN', 'BOG', 'CAN', 'CTG', 'MAD', 'MEX']
+  dataArrDestination: Set<string> = new Set(this.dataDestination);
+  optionsDestination = [...this.dataArrDestination];
 
-  dataArr: Set<string> = new Set(this.data);
-
-  options = [...this.dataArr];
 
   onSubmit(): void {
     alert('Thanks!');
@@ -56,5 +59,11 @@ export class FormSearchComponent {
     }    )
 
   }
+
+  showResults(){
+   return this.elementResult = true
+  }
+
+
 
 }
