@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FlightsService} from "../../services/flights.service";
 
 @Component({
@@ -15,7 +15,8 @@ export class ResultsComponent {
   selectCurrency: string = "USD";
 
 //Constructor
-  constructor(public flight: FlightsService) {}
+  constructor(public flight: FlightsService) {
+  }
 
 
   // Llamar metodo getFlights
@@ -31,7 +32,6 @@ export class ResultsComponent {
       }
     )
   }
-
 
 
 }
