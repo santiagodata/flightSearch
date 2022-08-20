@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FlightsService} from "../../services/flights.service";
+import {FlightModel} from "../../models/flights.model";
 
 @Component({
   selector: 'app-form-search',
@@ -18,13 +19,14 @@ export class FormSearchComponent {
   public flights: any = []
   public elementResult: boolean = false;
   origin: string = ""
-  destination: string = ""
+  destination: string = "";
+
 
   // Constructor
+
   constructor(
     private fb: FormBuilder,
     public flightService: FlightsService,
-
   ) {
   }
 
@@ -35,6 +37,9 @@ export class FormSearchComponent {
 
   // Datos Origin
   dataOrigin: string[] = ['BOG', 'CTG', 'MDE', 'MZL', 'PEI']
+
+  // bogota:string [] = this.getFlights().filter(persona => persona.edad >= 18);
+
   dataArrOrigin: Set<string> = new Set(this.dataOrigin);
   optionsOrigin = [...this.dataArrOrigin];
 
@@ -42,7 +47,6 @@ export class FormSearchComponent {
   dataDestination: string[] = ['BCN', 'BOG', 'CAN', 'CTG', 'MAD', 'MEX']
   dataArrDestination: Set<string> = new Set(this.dataDestination);
   optionsDestination = [...this.dataArrDestination];
-
 
 
 // Obtener vuelos
@@ -57,9 +61,6 @@ export class FormSearchComponent {
       console.log(resp)
     });
   }
-
-
-
 
 
   // ngOnInit() {
@@ -79,10 +80,10 @@ export class FormSearchComponent {
   // Mostrar componente resultado
   showResults() {
     return this.elementResult = true
-      }
+  }
 
   //Validar valores repetidos
-  repeatValidation(inputOrigin:string, inputDestination:string) {
+  repeatValidation(inputOrigin: string, inputDestination: string) {
     if (inputOrigin == inputDestination) {
       alert('Origin y Destination deben ser valores diferentes');
     }
@@ -94,13 +95,23 @@ export class FormSearchComponent {
 
 
 // Input Origin
-  public getInputOrigin(inputOrigin:string) {
+  public getInputOrigin(inputOrigin: string) {
     console.log(inputOrigin);
   }
 
 
 // Input Destination
-  public getInputDestination(inputDestination:string) {
+  public getInputDestination(inputDestination: string) {
     console.log(inputDestination);
   }
+
+
+// Input Max.Flights
+  public getInputMaxFlights(numberFlights: number) {
+    return numberFlights
+    console.log('number max flights:' + numberFlights);
+  }
+
+
+
 }

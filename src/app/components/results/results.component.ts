@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FlightsService} from "../../services/flights.service";
+import {FormSearchComponent} from '../form-search/form-search.component'
 
 @Component({
   selector: 'app-results',
@@ -15,7 +16,9 @@ export class ResultsComponent {
   selectCurrency: string = "USD";
 
 //Constructor
-  constructor(public flightsService: FlightsService) {
+  constructor(public flightsService: FlightsService,
+              public formSearch:FormSearchComponent
+  ) {
   }
 
 
@@ -41,10 +44,18 @@ export class ResultsComponent {
 
   public getFlights() {
     this.flightsService.getFlights().subscribe((resp) => {
-      this.flights = resp;
+      this.flights= resp;
       console.log(resp)
     });
   }
+
+// Input Max.Flights
+   public setInputMaxFlights(numberFlights: number) {
+    this.formSearch.getInputMaxFlights
+    console.log('number max flights:' + numberFlights);
+  }
+
+
 
 }
 

@@ -10,15 +10,14 @@
         <mat-option value="COP">COP</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label> Max. number of flights</mat-label>
-      <input matInput value="10">
-    </mat-form-field>
+
+
+
   </div>
 
 
   <div class="row">
-    <div class="col-sm-3 " *ngFor="let flight of flights">
+    <div class="col-sm-3 " *ngFor="let flight of flights.slice(0, setInputMaxFlights)">
       <div class="card border-light mb-3" id="flight-card" style="max-width: 18rem;">
 
         <!--        Tarjetas-->

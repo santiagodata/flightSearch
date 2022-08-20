@@ -17,7 +17,6 @@
               <ng-template matStepLabel>Origin <i class="fa-solid fa-plane-departure"></i></ng-template>
               <mat-form-field>
                 <input #inputOrigin
-                       #departureStation
                        matInput
                        placeholder="departure"
                        formControlName="firstCtrl"
@@ -43,8 +42,13 @@
                        [matAutocomplete]="autoDestination"
                        style="text-transform:uppercase;">
               </mat-form-field>
+
             </form>
           </mat-step>
+
+
+
+
 
           <!--          Autocompletador Origin-->
           <mat-autocomplete #autoOrigin="matAutocomplete">
@@ -64,20 +68,25 @@
         </mat-vertical-stepper>
       </mat-card-content>
 
-      <!--boton Search-->
+
+
+      <!--Boton Search-->
       <mat-card-actions>
         <button
           (click)="showResults()"
           (click)="repeatValidation(inputOrigin.value, inputDestination.value)"
           (click)="getInputOrigin(inputOrigin.value)"
           (click)="getInputDestination(inputDestination.value)"
+
+
+
           mat-raised-button
           color="primary"
           type="submit">
           Search
         </button>
       </mat-card-actions>
-
+<!--      (click)="getInputMaxFlights(numberFlights.value)"-->
     </mat-card>
   </form>
 
