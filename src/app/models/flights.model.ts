@@ -4,16 +4,16 @@ import {FlightInterface} from "./flights.interface";
 // Clase Flight
 export class FlightModel implements FlightInterface {
 
-  origin: string;
-  destination: string;
+  departureStation: string;
+  arrivalStation: string;
   flightCarrier: string;
   flightNumber: string;
   price: number;
 
 
   constructor(origin: string, destination: string, flightCarrier: string, flightNumber: string, price: number) {
-    this.origin = origin;
-    this.destination = destination;
+    this.departureStation = origin;
+    this.arrivalStation = destination;
     this.flightCarrier = flightCarrier;
     this.flightNumber = flightNumber;
     this.price = price;
@@ -22,8 +22,8 @@ export class FlightModel implements FlightInterface {
   static flightFromJSON(obj: FlightInterface) {
     return new FlightModel
     (
-      obj['origin'],
-      obj['destination'],
+      obj['departureStation'],
+      obj['arrivalStation'],
       obj['flightCarrier'],
       obj['flightNumber'],
       obj['price'],
