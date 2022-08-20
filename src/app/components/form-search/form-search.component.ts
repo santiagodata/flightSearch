@@ -10,21 +10,21 @@ import {FlightsService} from "../../services/flights.service";
 
 // Clase para FormSearch
 export class FormSearchComponent {
+
   searchForm = this.fb.group({
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
+    origin: [null, Validators.required],
+    destination: [null, Validators.required],
   });
   public flights: any = []
   public elementResult: boolean = false;
-  public elementRepeat: boolean = false;
-  public departure: string = "";
-  public arrival: string = "";
-
+  origin: string = ""
+  destination: string = ""
 
   // Constructor
   constructor(
     private fb: FormBuilder,
-    public flight: FlightsService,
+    public flightService: FlightsService,
+
   ) {
   }
 
@@ -44,35 +44,63 @@ export class FormSearchComponent {
   optionsDestination = [...this.dataArrDestination];
 
 
-//Validacion
-  repeatValidation(): void {
-    alert('Origin y Destination deben ser valores diferentes');
+
+// Obtener vuelos
+
+  ngOnInit(): void {
+    this.getFlights();
   }
 
-  ngOnInit() {
-    this.flight.getFlights().subscribe
-    (
-      (r) => {
-        this.flights = r;
-        console.log(r)
-      },
-      (e) => {
-        console.error(e)
-      }
-    )
+  public getFlights() {
+    this.flightService.getFlights().subscribe((resp) => {
+      this.flights = resp;
+      console.log(resp)
+    });
   }
 
-  // Buscar origin
-  getOrigin(searchTerm: string) {
-    this.flight.getOrigin(searchTerm).subscribe(data => {
-      console.log(data);
-    })
 
-  }
+
+
+
+  // ngOnInit() {
+  //   this.flight.getFlights().subscribe
+  //   (
+  //     (r) => {
+  //       this.flights = r;
+  //       console.log(r)
+  //     },
+  //     (e) => {
+  //       console.error(e)
+  //     }
+  //   )
+  // }
+
 
   // Mostrar componente resultado
   showResults() {
     return this.elementResult = true
+      }
+
+  //Validar valores repetidos
+  repeatValidation(inputOrigin:string, inputDestination:string) {
+    if (inputOrigin == inputDestination) {
+      alert('Origin y Destination deben ser valores diferentes');
+    }
+
+    if (inputOrigin == inputDestination) {
+      this.elementResult = false
+    }
   }
 
+
+// Input Origin
+  public getInputOrigin(inputOrigin:string) {
+    console.log(inputOrigin);
+  }
+
+
+// Input Destination
+  public getInputDestination(inputDestination:string) {
+    console.log(inputDestination);
+  }
 }

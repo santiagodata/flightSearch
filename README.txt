@@ -1,5 +1,4 @@
 
-
 INSTRUCCIONES DE EJECUCIÓN
 
 - Crear un directorio nuevo
@@ -15,10 +14,7 @@ INSTRUCCIONES DE EJECUCIÓN
 - Escribir el comando 'ng serve -o' para ejecutar la aplicación
 
 
-
- -----------------++++++++---------------------------+++++------------------------+++++++++++------------+++++++++++++----------
-
-
+ -----------------++++++++----------------------+++++------------------------+++++++++++------------+++++++++++++--------
 
 REQUERIMIENTOS IMPLEMENTADOS
 
@@ -32,6 +28,7 @@ REQUERIMIENTOS IMPLEMENTADOS
 
 - Agregar dos monedas más (COP Y EUR)
 
+- Los campos no pueden contener el mismo valor
 
 
 REQUERIMIENTOS NO IMPLEMENTADOS
@@ -41,9 +38,6 @@ REQUERIMIENTOS NO IMPLEMENTADOS
 
 - Optimizar peticiones a la API.
 
-- Los campos no pueden contener el mismo valor
-
 - Configurar número máximo de vuelos/ruta
 
 - Filtrar respuestas por medio del mapeo de la clase Flight
-

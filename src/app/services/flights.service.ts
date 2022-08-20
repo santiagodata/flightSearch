@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
+import {FlightInterface} from "../models/flights.interface";
+import {Flight} from "../models/flights.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +15,21 @@ export class FlightsService {
   constructor(public http: HttpClient) {
   }
 
-  // Obtener Vuelos
-  getFlights(): Observable<any> {
-    return this.http.get(this.API_URL);
+  // // Obtener Vuelos
+  // getFlights(): Observable<any> {
+  //   return this.http.get(this.API_URL);
+  // }
+
+  // // Obtener Vuelos
+  public getFlights():Observable<any>
+  {
+    return this.http.get<FlightInterface[]>(this.API_URL).pipe(
+      map( (resp:FlightInterface[]) => {
+        return resp.map(flight => Flight.flightFromJSON(flight))
+      })
+    );
   }
 
-  // Obtener origenes
-  getOrigin(searchTerm: string): Observable<any> {
-    return this.http.get(this.API_URL + "?" + searchTerm);
-  }
 
-  // Obtener destinos
-  getDestination(searchTerm: string): Observable<any> {
-    return this.http.get(this.API_URL + "?" + searchTerm);
-  }
 
 }

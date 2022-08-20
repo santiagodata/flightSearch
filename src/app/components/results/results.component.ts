@@ -15,24 +15,36 @@ export class ResultsComponent {
   selectCurrency: string = "USD";
 
 //Constructor
-  constructor(public flight: FlightsService) {
+  constructor(public flightsService: FlightsService) {
   }
 
 
   // Llamar metodo getFlights
-  ngOnInit() {
-    this.flight.getFlights().subscribe
-    (
-      (r) => {
-        this.flights = r;
-        console.log(r)
-      },
-      (e) => {
-        console.error(e)
-      }
-    )
+
+  // ngOnInit() {
+  //   this.flight.getFlights().subscribe
+  //   (
+  //     (r) => {
+  //       this.flights = r;
+  //       console.log(r)
+  //     },
+  //     (e) => {
+  //       console.error(e)
+  //     }
+  //   )
+  // }
+
+
+  ngOnInit(): void {
+    this.getFlights();
   }
 
+  public getFlights() {
+    this.flightsService.getFlights().subscribe((resp) => {
+      this.flights = resp;
+      console.log(resp)
+    });
+  }
 
 }
 

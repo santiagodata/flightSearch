@@ -16,13 +16,12 @@
             <form [formGroup]="firstFormGroup">
               <ng-template matStepLabel>Origin <i class="fa-solid fa-plane-departure"></i></ng-template>
               <mat-form-field>
-                <input id="departure"
-                       name="departure"
+                <input #inputOrigin
+                       #departureStation
                        matInput
                        placeholder="departure"
                        formControlName="firstCtrl"
                        required maxlength="3"
-                       #searchOrigin
                        [formControl]=" myControl"
                        [matAutocomplete]="autoOrigin"
                        style="text-transform:uppercase;">
@@ -35,8 +34,7 @@
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Destination <i class="fa-solid fa-plane-arrival"></i></ng-template>
               <mat-form-field>
-                <input id="arrival"
-                       name="arrival"
+                <input #inputDestination
                        matInput
                        placeholder="arrival"
                        formControlName="secondCtrl"
@@ -70,6 +68,9 @@
       <mat-card-actions>
         <button
           (click)="showResults()"
+          (click)="repeatValidation(inputOrigin.value, inputDestination.value)"
+          (click)="getInputOrigin(inputOrigin.value)"
+          (click)="getInputDestination(inputDestination.value)"
           mat-raised-button
           color="primary"
           type="submit">
@@ -85,10 +86,6 @@
     <div class="app-results">
       <app-results></app-results>
     </div>
-  </div>
-
-  <div *ngIf="departure == arrival">
-    <div (submit)="repeatValidation()"></div>
   </div>
 </div>
 
