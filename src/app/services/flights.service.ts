@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {FlightInterface} from "../models/flights.interface";
-import {Flight} from "../models/flights.model";
+import {FlightModel} from "../models/flights.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FlightsService {
 
-  public API_URL = "https://recruiting-api.newshore.es/api/flights/0/" //URL de conexion a la API
+  public API_URL = "https://recruiting-api.newshore.es/api/flights/1/" //URL de conexion a la API
 
   // Contructor
   constructor(public http: HttpClient) {
@@ -25,7 +25,7 @@ export class FlightsService {
   {
     return this.http.get<FlightInterface[]>(this.API_URL).pipe(
       map( (resp:FlightInterface[]) => {
-        return resp.map(flight => Flight.flightFromJSON(flight))
+        return resp.map(flights => FlightModel.flightFromJSON(flights))
       })
     );
   }
