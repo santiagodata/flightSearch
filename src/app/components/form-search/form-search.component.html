@@ -71,7 +71,11 @@
       <!--Boton Search-->
       <mat-card-actions>
         <button
-          (click)="showResults() && repeatValidation(inputOrigin.value, inputDestination.value) && getInputOrigin(inputOrigin.value) && getInputDestination(inputDestination.value) && search(inputOrigin.value, inputDestination.value)"
+          (click)="showResults()"
+          (click)="repeatValidation(inputOrigin.value, inputDestination.value)"
+          (click)="getInputOrigin(inputOrigin.value)"
+          (click)="getInputDestination(inputDestination.value)"
+          (click)="search(inputOrigin.value, inputDestination.value)"
           mat-raised-button
           color="primary"
           type="submit">
