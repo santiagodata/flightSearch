@@ -16,20 +16,12 @@ export class FlightsService {
   }
 
   // // Obtener Vuelos
-  // getFlights(): Observable<any> {
-  //   return this.http.get(this.API_URL);
-  // }
-
-  // // Obtener Vuelos
-  public getFlights():Observable<any>
-  {
+  public getFlights(): Observable<any> {
     return this.http.get<FlightInterface[]>(this.API_URL).pipe(
-      map( (resp:FlightInterface[]) => {
+      map((resp: FlightInterface[]) => {
         return resp.map(flights => FlightModel.flightFromJSON(flights))
+
       })
     );
   }
-
-
-
 }

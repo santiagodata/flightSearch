@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FlightsService} from "../../services/flights.service";
-import {FlightModel} from "../../models/flights.model";
 
 @Component({
   selector: 'app-form-search',
@@ -13,13 +12,14 @@ import {FlightModel} from "../../models/flights.model";
 export class FormSearchComponent {
 
   searchForm = this.fb.group({
-    origin: [null, Validators.required],
-    destination: [null, Validators.required],
+    departureStation: [null, Validators.required],
+    arrivalStation: [null, Validators.required],
   });
+
   public flights: any = []
   public elementResult: boolean = false;
-  origin: string = ""
-  destination: string = "";
+  departureStation: string = ""
+  arrivalStation: string = "";
 
 
   // Constructor
@@ -28,6 +28,7 @@ export class FormSearchComponent {
     private fb: FormBuilder,
     public flightService: FlightsService,
   ) {
+
   }
 
   firstFormGroup: FormGroup = this.fb.group({firstCtrl: ['']});
@@ -37,9 +38,6 @@ export class FormSearchComponent {
 
   // Datos Origin
   dataOrigin: string[] = ['BOG', 'CTG', 'MDE', 'MZL', 'PEI']
-
-  // bogota:string [] = this.getFlights().filter(persona => persona.edad >= 18);
-
   dataArrOrigin: Set<string> = new Set(this.dataOrigin);
   optionsOrigin = [...this.dataArrOrigin];
 
@@ -50,7 +48,6 @@ export class FormSearchComponent {
 
 
 // Obtener vuelos
-
   ngOnInit(): void {
     this.getFlights();
   }
@@ -63,24 +60,11 @@ export class FormSearchComponent {
   }
 
 
-  // ngOnInit() {
-  //   this.flight.getFlights().subscribe
-  //   (
-  //     (r) => {
-  //       this.flights = r;
-  //       console.log(r)
-  //     },
-  //     (e) => {
-  //       console.error(e)
-  //     }
-  //   )
-  // }
-
-
   // Mostrar componente resultado
   showResults() {
     return this.elementResult = true
   }
+
 
   //Validar valores repetidos
   repeatValidation(inputOrigin: string, inputDestination: string) {
@@ -106,12 +90,18 @@ export class FormSearchComponent {
   }
 
 
-// Input Max.Flights
-  public getInputMaxFlights(numberFlights: number) {
-    return numberFlights
-    console.log('number max flights:' + numberFlights);
+  // Buscar
+  public search(inputOrigin: string, inputDestination: string,) {
+    let resultSearch: (string | number)[]
+    this.flights.forEach((Results: { departureStation: string; arrivalStation: string; flightCarrier: string; flightNumber: string; price: number; }) => {
+      if (Results.departureStation === inputOrigin && Results.arrivalStation === inputDestination) {
+        resultSearch = [Results.departureStation, Results.arrivalStation, Results.flightCarrier, Results.flightNumber, Results.price]
+        // resultSearch = Results.departureStation + " - " + Results.arrivalStation + " - " + Results.flightCarrier + " - " + Results.flightNumber + " - " + Results.price
+
+        console.log(resultSearch)
+
+      }
+    })
   }
-
-
 
 }

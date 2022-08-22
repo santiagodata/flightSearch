@@ -13,7 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatCardModule} from "@angular/material/card";
 import {MatDividerModule} from "@angular/material/divider";
 import { FormSearchComponent } from './components/form-search/form-search.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -23,11 +23,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ResultsComponent,
     FormSearchComponent,
+
 
   ],
   imports: [
@@ -47,7 +49,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    FormsModule
   ],
   providers: [FlightsService],
   bootstrap: [AppComponent]

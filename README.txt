@@ -33,11 +33,8 @@ REQUERIMIENTOS IMPLEMENTADOS
 
 REQUERIMIENTOS NO IMPLEMENTADOS
 
-- Crear modelo de acuerdo al diagrama UML. Aunque el modelo ejecutado es similar, se debe mejorar para cumplir
- totalmente con el requerimiento.
-
-- Optimizar peticiones a la API.
+- Obtener ruta (El resultado solo se muestra en consola)
 
 - Configurar número máximo de vuelos/ruta
 
-- Filtrar respuestas por medio del mapeo de la clase Flight
+

@@ -11,9 +11,9 @@ export class FlightModel implements FlightInterface {
   price: number;
 
 
-  constructor(origin: string, destination: string, flightCarrier: string, flightNumber: string, price: number) {
-    this.departureStation = origin;
-    this.arrivalStation = destination;
+  constructor(departureStation: string, arrivalStation: string, flightCarrier: string, flightNumber: string, price: number) {
+    this.departureStation = departureStation;
+    this.arrivalStation = arrivalStation;
     this.flightCarrier = flightCarrier;
     this.flightNumber = flightNumber;
     this.price = price;
@@ -27,33 +27,9 @@ export class FlightModel implements FlightInterface {
       obj['flightCarrier'],
       obj['flightNumber'],
       obj['price'],
-
     )
   }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-  // origin: string;
-  // destination: string;
-  // flightCarrier: string;
-  // flightNumber: string;
-  // price: number;
-  //
-  //
-
-
-
-
 
 

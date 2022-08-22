@@ -48,8 +48,6 @@
 
 
 
-
-
           <!--          Autocompletador Origin-->
           <mat-autocomplete #autoOrigin="matAutocomplete">
             <mat-option *ngFor="let option of optionsOrigin" [value]="option">
@@ -73,20 +71,14 @@
       <!--Boton Search-->
       <mat-card-actions>
         <button
-          (click)="showResults()"
-          (click)="repeatValidation(inputOrigin.value, inputDestination.value)"
-          (click)="getInputOrigin(inputOrigin.value)"
-          (click)="getInputDestination(inputDestination.value)"
-
-
-
+          (click)="showResults() && repeatValidation(inputOrigin.value, inputDestination.value) && getInputOrigin(inputOrigin.value) && getInputDestination(inputDestination.value) && search(inputOrigin.value, inputDestination.value)"
           mat-raised-button
           color="primary"
           type="submit">
           Search
         </button>
       </mat-card-actions>
-<!--      (click)="getInputMaxFlights(numberFlights.value)"-->
+
     </mat-card>
   </form>
 

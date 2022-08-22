@@ -10,14 +10,11 @@
         <mat-option value="COP">COP</mat-option>
       </mat-select>
     </mat-form-field>
-
-
-
   </div>
 
 
   <div class="row">
-    <div class="col-sm-3 " *ngFor="let flight of flights.slice(0, 10)">
+    <div class="col-sm-3 " *ngFor="let flight of flights">
       <div class="card border-light mb-3" id="flight-card" style="max-width: 18rem;">
 
         <!--        Tarjetas-->
@@ -53,14 +50,6 @@
 
     </div>
 
-<!--    Paginacion-->
-    <mat-paginator #paginator
-
-                   [pageIndex]="0"
-                   [pageSize]="10"
-                   [pageSizeOptions]="[5, 10, 20]"
-                   aria-label="Select page">
-    </mat-paginator>
   </div>
 
 </div>
