@@ -9,7 +9,7 @@ import {FlightModel} from "../models/flights.model";
 })
 export class FlightsService {
 
-  public API_URL = "https://recruiting-api.newshore.es/api/flights/1/" //URL de conexion a la API
+  public API_URL = "https://recruiting-api.newshore.es/api/flights/0/" //URL de conexion a la API
 
   // Contructor
   constructor(public http: HttpClient) {
